@@ -1,3 +1,5 @@
+各层功能说明
+
 1-Design
 包括解决方案的总体说明。分层结构、各层调用关系
 
@@ -5,18 +7,18 @@
 2-Common
 包括解决方案中各层可以共用的基础组件，帮助工具类。
 其中
-AOP     是一个切面代理层，用于各层各模块的日志记录的代理包装
-Caching 是一个缓存层，包括redis的中间件封装，本地缓存对象的处理
-Common  是一层Helper类的层。各层需要定义的一些共用处理程序可以放到本层
-Logger  是一层日志处理总层，定义了一些处理日志记录的帮助类
-MQ      是一层消息。封装消息组件以及消息处理的帮助工具类
+AOP     是一个切面代理层，用于各层各模块的日志记录的代理包装。依赖层：Common、Logger
+Caching 是一个缓存层，包括redis的中间件封装，本地缓存对象的处理。依赖层：Common、Logger
+Common  是一层Helper类的层。各层需要定义的一些共用处理程序可以放到本层。依赖层：Logger
+Logger  是一层日志处理总层，定义了一些处理日志记录的帮助类。依赖层：Common
+MQ      是一层消息。封装消息组件以及消息处理的帮助工具类。依赖层：Common、Logger
 
 
 3-DataAccess
 数据访问层，使用JnsFramework数据库中间件完成对数据库的访问。
 其中
-BLL层  是业务逻辑处理层。主要是对DAL层的调用，以及对Core层的进一步处理，根据需要可以不适用本层。
-DAL层  是数据库访问层。主要包括sql语句的执行
+BLL层  是业务逻辑处理层。主要是对DAL层的调用，以及对Core层的进一步处理，根据需要可以不适用本层。依赖层：DAL、Common、Logger
+DAL层  是数据库访问层。主要包括sql语句的执行。依赖层：Common、Logger
 JnsBLL
 JnsDAL
 
@@ -28,17 +30,18 @@ Entity  是一层用户交互使用的实体类
 JnsDict
 JnsModel
 
+
 5-Core
 本层是业务逻辑处理的唯一单元，所有的业务处理都要放到本层去做
-Core层          是处理系统上非查询的业务逻辑
-Query层         是处理系统上查询需要的业务逻辑
+Core层          是处理系统上非查询的业务逻辑。依赖层：BLL、AOP、Caching、Common、Logger、MQ、ServiceProxy
+Query层         是处理系统上查询需要的业务逻辑。依赖层：BLL、Caching、Common、Logger、ServiceProxy
 ServiceProxy层  是外部接口的引用层
 
 
 6-Service
 改层是服务接口的接口定义层
-ApiService层  是服务接口定义层
-JobService层  是Schedule调用接口层
+ApiService层  是服务接口定义层。依赖层：Core、Query
+JobService层  是Schedule调用接口层。依赖层：Core、Query
 
 
 7-StartUp
