@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ProxyTest
+namespace DataAccessTest
 {
     [TestClass]
     public class UnitTest1

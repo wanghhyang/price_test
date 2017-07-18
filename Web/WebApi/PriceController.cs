@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace Web.WebApi
 {
-    public class Price : ApiController
+    public class PriceController : ApiController
     {
         // GET api/<controller>
         public IEnumerable<string> Get()
