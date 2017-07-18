@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>7f947778-3fc4-4410-99e6-279d12557114</ProjectGuid>
+    <ProjectGuid>3386fe36-898d-4c79-83c9-5ef90a4c33bc</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Schedule</RootNamespace>
-    <AssemblyName>Schedule</AssemblyName>
+    <RootNamespace>ApiService</RootNamespace>
+    <AssemblyName>ApiService</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
